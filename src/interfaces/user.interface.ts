@@ -1,11 +1,14 @@
+import { Schema } from "mongoose";
+
 export interface IUser {
+  _id: string;
   fullName: string;
   email: string;
-  accessToken: string;
-  refreshValidTill: Date;
-  otpExpiresIn: Date;
   hash: string;
-  otp: string;
-  role: string;
-  _id: string;
+  accessToken?: string;
+  refreshValidTill: Date;
+  otp?: string;
+  otpExpiresIn: Date;
+  role: "admin" | "user";
+  jobApplications?: Schema.Types.ObjectId[];
 }

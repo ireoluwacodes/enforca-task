@@ -34,7 +34,13 @@ const userSchema = new Schema<IUser>({
     default: "user",
     required: true,
   },
+  jobApplications: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "JobApplication",
+    },
+  ],
 });
 
-//Export the model
+// Export the model
 export const User = model("User", userSchema);
