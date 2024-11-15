@@ -1,5 +1,8 @@
+import { Schema } from "mongoose";
+
 export interface IJob {
   title: string;
+  createdBy: Schema.Types.ObjectId;
   description: string;
   company: string;
   location: string;

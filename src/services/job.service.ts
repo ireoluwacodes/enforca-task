@@ -1,13 +1,19 @@
-import { Job, JobApplication } from "../models";
+import { Job, JobApplication, Activity } from "../models";
 import { IJob, IJobApplication } from "../interfaces";
 import { ForbiddenRequestError } from "../exceptions";
 
 export class JobService {
   private jobModel = Job;
   private jobApplicationModel = JobApplication;
+  private activityModel = Activity;
 
   public async createJob(jobData: IJob): Promise<IJob> {
     const job = await this.jobModel.create(jobData);
+    await this.activityModel.create({
+      action: "create_job",
+      user: jobData.createdBy,
+      details: `Job ${job.title} created`,
+    });
     return job;
   }
 
@@ -40,6 +46,11 @@ export class JobService {
     const application = await this.jobApplicationModel.create({
       user: userId,
       job: jobId,
+    });
+    await this.activityModel.create({
+      action: "apply_job",
+      user: userId,
+      details: `User applied for job ${jobId}`,
     });
     return application;
   }

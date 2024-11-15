@@ -7,6 +7,10 @@ const jobSchema = new Schema<IJob>({
     type: String,
     required: true,
   },
+  createdBy: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+  },
   description: {
     type: String,
     required: true,

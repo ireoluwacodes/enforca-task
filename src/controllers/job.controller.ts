@@ -14,7 +14,10 @@ export class JobController {
   ): Promise<Response | void> {
     try {
       const jobData = req.body;
-      const job = await jobService.createJob(jobData);
+      const id = req.user?.sub as string;
+      const payload = { ...jobData, createdBy: id };
+
+      const job = await jobService.createJob(payload);
       const data = {
         statusCode: CREATED,
         data: job,

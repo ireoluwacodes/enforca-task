@@ -40,6 +40,20 @@ const userSchema = new Schema<IUser>({
       ref: "JobApplication",
     },
   ],
+  paymentInfo: {
+    accountNumber: {
+      type: String,
+    },
+    bankName: {
+      type: String,
+    },
+    state: {
+      type: String,
+    },
+    country: {
+      type: String,
+    },
+  },
 });
 
 // Export the model

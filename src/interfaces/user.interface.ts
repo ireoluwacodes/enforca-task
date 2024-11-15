@@ -11,4 +11,10 @@ export interface IUser {
   otpExpiresIn: Date;
   role: "admin" | "user";
   jobApplications?: Schema.Types.ObjectId[];
+  paymentInfo?: {
+    accountNumber?: string;
+    bankName?: string;
+    state?: string;
+    country?: string;
+  };
 }

@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { JobController } from "../controllers";
+import { ActivityController } from "../controllers/activity.controller";
 import { authMiddleware, successHandler, validator } from "../middleware";
 import {
   createJobSchema,
@@ -8,6 +9,7 @@ import {
 } from "../validators";
 
 const jobController = new JobController();
+const activityController = new ActivityController();
 
 export const JobRouter = Router();
 
@@ -47,5 +49,11 @@ JobRouter.route("/jobs/apply").post(
 JobRouter.route("/job-applications").get(
   authMiddleware,
   jobController.getAllJobApplications,
+  successHandler,
+);
+
+JobRouter.route("/activities").get(
+  authMiddleware,
+  activityController.getAllActivities,
   successHandler,
 );

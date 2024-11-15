@@ -23,3 +23,15 @@ export const otpSchema: ObjectSchema = Joi.object({
 export const passwordSchema: ObjectSchema = Joi.object({
   password: Joi.string().required(),
 });
+
+export const updateUserProfileSchema: ObjectSchema = Joi.object({
+  fullName: Joi.string().optional(),
+  email: Joi.string().optional(),
+});
+
+export const addPaymentInfoSchema: ObjectSchema = Joi.object({
+  accountNumber: Joi.string().required(),
+  bankName: Joi.string().required(),
+  state: Joi.string().required(),
+  country: Joi.string().required(),
+});
